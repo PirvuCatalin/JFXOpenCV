@@ -70,6 +70,9 @@ public class Controller
     // Mat used to check for motion
     private Mat frameDelta = new Mat();
 
+    // variable used to determine the final licence plate
+    int i = 0;
+
     private String ScanForCar()throws Exception {
         // country: eu for Europe, us for USA
         // configfile: the location of openalpr.conf
@@ -114,7 +117,7 @@ public class Controller
             // How it works: Grabs a frame, then makes it a byte of array in order to make
             // the openalpr's "recognize" work with it.
 
-            /*
+
             Mat original = grabFrame();
             BufferedImage img;
             img = Utils.matToBufferedImage(original);
@@ -124,7 +127,7 @@ public class Controller
             byte[] imageInByte = baos.toByteArray();
             baos.close();
             AlprResults results = alpr.recognize(imageInByte);
-            */
+
 
             /////////////////////////////////////////////////////////////////////////////////
 
@@ -138,8 +141,8 @@ public class Controller
             //  How it works: due to the facts that openalpr's "recognize" is projected to work with
             // local files, you just give the location of the file and it scans that file.
             //
-            licensePlate = "test_images\\test1 ("+(1+currentFrameToDetect)+").jpg";
-            AlprResults results = alpr.recognize(licensePlate);
+            //licensePlate = "test_images\\test1 ("+(1+currentFrameToDetect)+").jpg";
+            //AlprResults results = alpr.recognize(licensePlate);
             //
             /////////////////////////////////////////////////////////////////////////////////////
 
@@ -207,7 +210,7 @@ public class Controller
         // if this statement is true then there are no plates detected in any frame
         if((x == numberOfCandidates && j == 0)||(x == 0 && j == 0)){
             System.err.println("No plate detected in the frames");
-            return null;
+            return "NULL";
         }
 
         // This is where i'll add the confidence rate found in all frames
@@ -280,11 +283,12 @@ public class Controller
                 // to prevent errors
                 frameDelta = grabFrame();
 
+                // string[] used to determine the final licence
+                String[] s = new String[5];
                 // grab a frame every 33 ms (30 frames/sec)
-                Runnable frameGrabber = new Runnable(){
+                Runnable frameGrabber = new Runnable() {
                     @Override
-                    public void run()
-                    {
+                    public void run() {
                         // effectively grab and process a single frame
                         Mat frame = grabFrame();
 
@@ -293,8 +297,8 @@ public class Controller
                         updateImageView(currentFrame, imageToShow);
 
                         // Checks if it should scan for motion
-                        if(currentMotionTime++==timeToMotionScan){
-                            currentMotionTime=0;
+                        if (currentMotionTime++ == timeToMotionScan) {
+                            currentMotionTime = 0;
 
                             Mat firstFrame = frameDelta;
                             List<MatOfPoint> contours = new ArrayList();
@@ -318,18 +322,40 @@ public class Controller
 
                             Imgproc.findContours(vv, contours, v, Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
 
-                            for(int idx = 0; idx < contours.size(); idx++)
-                            {
+                            for (int idx = 0; idx < contours.size(); idx++) {
                                 Mat contour = contours.get(idx);
                                 double contourarea = Imgproc.contourArea(contour);
-                                if (contourarea > maxArea){
+                                if (contourarea > maxArea) {
 
                                     // HERE IS WHAT HAPPENS IF MOVEMENT HAS BEEN FOUND
                                     try {
-                                        String s = ScanForCar();
-                                        System.out.println("Plate number returned by the method: "+s);
-                                    }
-                                    catch (Exception e) {
+                                        s[i] = ScanForCar();
+                                        System.out.println("Plate number returned by the method: " + s[i]);
+                                        i++;
+                                        // if we scanned 5 sequences of frames then we should stop the camera
+                                        // but first let's write the final licence plate number
+                                        // the final licence plate number is the one that appears the most in the s[]
+                                        if (i == 5) {
+                                            int a[] = {0, 0, 0, 0, 0};
+                                            for (int j = 0; j < 5; j++) {
+                                                for (i = 0; i < 5; i++) {
+                                                    if (s[i].equals(s[j])) {
+                                                        a[j]++;
+                                                    }
+                                                }
+                                            }
+                                            int max = a[0];
+                                            int varMax = 0;
+                                            for (i = 1; i < 5; i++) {
+                                                if (max < a[i]) {
+                                                    max = a[i];
+                                                    varMax = i;
+                                                }
+                                            }
+                                            System.out.println("\nThe final license plate:" + s[varMax]);
+                                            System.exit(0);
+                                        }
+                                    } catch (Exception e) {
                                         System.err.print("Error at the entrance in the plate number scanner method " + e);
                                     }
                                     break;
@@ -339,9 +365,11 @@ public class Controller
                             // takes a frame to compare on future scans
                             frameDelta = grabFrame();
                         }
-                    }
-                };
 
+
+                    }
+
+                };
                 this.timer = Executors.newSingleThreadScheduledExecutor();
 
                 // modify third argument to increase/decrease the time to wait for grabbing a new frame
