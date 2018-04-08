@@ -70,7 +70,7 @@ public final class Utils
      * @return the corresponding {@link BufferedImage}
      */
 
-    private static BufferedImage matToBufferedImage(Mat original)
+    public static BufferedImage matToBufferedImage(Mat original)
     {
         // init
         BufferedImage image = null;

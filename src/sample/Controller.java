@@ -1,10 +1,15 @@
 package sample;
 
+import java.io.ByteArrayOutputStream;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import javax.imageio.ImageIO;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Core;
@@ -74,7 +79,6 @@ public class Controller
                 configfile = "openalpr.conf",
                 runtimeDataDir = "runtime_data",
                 licensePlate;
-
         // detector initialization. do this once and don't mess with the files (parameters)
         Alpr alpr = new Alpr(country, configfile, runtimeDataDir);
 
@@ -102,14 +106,42 @@ public class Controller
         // entering the loop that scans EACH frame
         for(int currentFrameToDetect = 0; currentFrameToDetect < numberOfFramesToDetect; currentFrameToDetect++) {
 
-            // the location of the licensePlate
-            // !if you want this to work, use the location of your local license plate
-            // !!!If you want to use another test images, update the number of frame too!!!
-            licensePlate = "test_images\\test1 ("+(1+currentFrameToDetect)+").jpg";
+            ////////////////////////////////////////////////////////////////////////////////
+            // CAMERA METHOD - RECOMMENDED FOR FINAL TESTING
+            // Use the following code to make the application work directly with your camera
+            // I recommend to use the alternative method for debugging
+            //
+            // How it works: Grabs a frame, then makes it a byte of array in order to make
+            // the openalpr's "recognize" work with it.
 
-            // it does what is says;
-            // this is the main processing time eater
+            /*
+            Mat original = grabFrame();
+            BufferedImage img;
+            img = Utils.matToBufferedImage(original);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(img, "jpg", baos);
+            baos.flush();
+            byte[] imageInByte = baos.toByteArray();
+            baos.close();
+            AlprResults results = alpr.recognize(imageInByte);
+            */
+
+            /////////////////////////////////////////////////////////////////////////////////
+
+
+            /////////////////////////////////////////////////////////////////////////////////////
+            // ALTERNATIVE METHOD - RECOMMENDED FOR DEBUGGING
+            // Warning: it is at least 10x slower that working directly with frames from the camera
+            // "licensePlate" is the location of the image to test
+            // !!!If you want to use another test images, update the number of frames too!
+            //
+            //  How it works: due to the facts that openalpr's "recognize" is projected to work with
+            // local files, you just give the location of the file and it scans that file.
+            //
+            licensePlate = "test_images\\test1 ("+(1+currentFrameToDetect)+").jpg";
             AlprResults results = alpr.recognize(licensePlate);
+            //
+            /////////////////////////////////////////////////////////////////////////////////////
 
             // Debug Only: to make the scan results look better
             System.out.println("Plate Number:     Confidence:");
@@ -154,9 +186,14 @@ public class Controller
         // has "numberOfCandidates" plates. If there aren't that many plates, it
         // checks for the frame that has "numberOfCandidates-1" plates and so on.
         // If we won't do this, there could be ignored plates and we don't want this
-        for(j = numberOfCandidates - 1; j >= 0; j--){
-            while(plateName[x][j] == null) x++;
-            if(x == numberOfCandidates && j!=0) {
+        for(j = numberOfCandidates - 1;  j >= 0; j--){
+            while(plateName[x][j] == null) {
+                if(x < numberOfFramesToDetect - 1){
+                    x++;
+                }
+                else break;
+            }
+            if(x == numberOfFramesToDetect-1 && j!=0) {
                 x = 0;
             }
             else {
@@ -168,9 +205,9 @@ public class Controller
         int actualNumberOfCandidates = j + 1;
 
         // if this statement is true then there are no plates detected in any frame
-        if(x == numberOfCandidates && j == 0){
+        if((x == numberOfCandidates && j == 0)||(x == 0 && j == 0)){
             System.err.println("No plate detected in the frames");
-            System.exit(1);
+            return null;
         }
 
         // This is where i'll add the confidence rate found in all frames
