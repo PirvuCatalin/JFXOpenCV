@@ -1,6 +1,6 @@
  # JFXOpenCV
  
-In the commit number 5 (12.04.2018) (8ad068fe5fcccda40da1d0ca204e2505d3db553f) the scanner alogirthm has been greatly updated and it now works Live, that is it won't stop when it finds a plate number, but it will continue to scan for motion again.
+In the commit number 5 (12.04.2018) (8ad068fe5fcccda40da1d0ca204e2505d3db553f) the scanner algorithm has been greatly updated and it now works Live, that is it won't stop when it finds a plate number, but it will continue to scan for motion again.
 
 
 I recommend you to build/run the application and read the console output in order to understand better the way it works right now.
