@@ -1,12 +1,14 @@
 package sample;
 
 import org.opencv.core.Core;
-
+import Database.Database;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
+
+import javax.xml.crypto.Data;
 
 /**
  * The main class for a JavaFX application. It creates and handle the main
@@ -60,5 +62,9 @@ public class Main extends Application
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
         launch(args);
+        Database db = new Database();
+
+        db.getAllEntries();
+
     }
 }
