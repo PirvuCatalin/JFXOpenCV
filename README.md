@@ -1,11 +1,14 @@
 # JFXOpenCV
  
 
-Before continuing to read this comment you should check the latest commit changes and the latest closed issue (regarding the scanner). In the Controller.class you will see more info like:
+Before continuing to read this you should check the latest commit changes and the latest closed issue (regarding the scanner). In the Controller.class you will see more info like:
 
 1. What to do with the license plate when we decided that this is the car that stopped to fill the tank
 
 2. What to do when that car that filled the tank left. Maybe check if it actually filled and if the answer is "yes" then we should send a notification on the phone with "Thank you for choosing us!"
+
+-------------------------------------------------------------------------------------
+The following part might be obsolete:
 
 
 In the commit number 5 (12.04.2018) (8ad068fe5fcccda40da1d0ca204e2505d3db553f) the scanner algorithm has been greatly updated and it now works Live, that is it won't stop when it finds a plate number, but it will continue to scan for motion again.
