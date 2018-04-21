@@ -1,7 +1,6 @@
 package sample;
 
 import org.opencv.core.Core;
-import Database.Database;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -17,6 +16,8 @@ import javax.xml.crypto.Data;
 
 public class Main extends Application
 {
+    static String myLicence = "NULL";
+
     @Override
     public void start(Stage primaryStage)
     {
@@ -42,7 +43,7 @@ public class Main extends Application
 
             // set the proper behavior on closing the application
             Controller controller = loader.getController();
-
+            myLicence = controller.getLicence();
             primaryStage.setOnCloseRequest((we -> controller.setClosed()));
         }
         catch (Exception e)
@@ -62,9 +63,10 @@ public class Main extends Application
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
         launch(args);
-        Database db = new Database();
 
-        db.getAllEntries();
+    }
+
+    public static void getLicence(String licence) {
 
     }
 }
