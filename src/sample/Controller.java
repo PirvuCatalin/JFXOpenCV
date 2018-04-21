@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import Database.Database;
 import org.opencv.core.Mat;
 import org.opencv.core.Core;
 import org.opencv.core.MatOfPoint;
@@ -53,7 +54,7 @@ public class Controller
      /** The action triggered by pushing the button on the GUI
      ** @param event the push button event
      **/
-
+    private Database db = new Database();
     // this is used to check if it's the time to scan for motion
     private int currentMotionTime = 0;
     // this is used to wait before scanning again for the car
@@ -62,8 +63,7 @@ public class Controller
     private int currentPlatePoisitionTime = 0;
 
     // used to keep the value of the license plate after deciding if it's the final one
-    private String finalLicensePlate = "NULL";
-
+    public String finalLicensePlate = "NULL";
     // Mat used to check for motion
     private Mat frameDelta = new Mat();
 
@@ -164,7 +164,6 @@ public class Controller
                                         s[i] = Utils.ScanForCar();
                                         System.out.println("Plate number returned by the method: " + s[i]);
                                         i++;
-
                                     }
                                     catch (Exception e) {
                                         System.err.print("Error at the entrance in the plate number scanner method " + e);
@@ -215,6 +214,7 @@ public class Controller
                                         //      finalLicensePlate is the card license plate
                                         //
                                         System.out.println("\nThe final license plate:" + finalLicensePlate);
+                                        db.getAllEntries(finalLicensePlate);
                                     }
                                     else {
                                         System.out.println("The scan failed to return a valid license plate.\nGoing back to the basic scanning.");
@@ -324,6 +324,10 @@ public class Controller
     /**
      ** Stop the acquisition from the camera and release all the resources
      **/
+
+    public String getLicence() {
+        return finalLicensePlate;
+    }
 
     private void stopAcquisition()
     {
