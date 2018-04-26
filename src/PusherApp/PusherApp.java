@@ -9,9 +9,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-
 public class PusherApp {
-
 
     public static void main(String[] args) throws IOException {
         HttpClient client = HttpClientBuilder.create().build();
