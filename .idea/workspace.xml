@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FXHelloCV/Utils/Utils.class" afterPath="$PROJECT_DIR$/out/production/FXHelloCV/Utils/Utils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FXHelloCV/sample/Controller$1.class" afterPath="$PROJECT_DIR$/out/production/FXHelloCV/sample/Controller$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FXHelloCV/sample/Controller.class" afterPath="$PROJECT_DIR$/out/production/FXHelloCV/sample/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FXHelloCV/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/FXHelloCV/sample/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Database/Database.java" afterPath="$PROJECT_DIR$/src/Database/Database.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Controller.java" afterPath="$PROJECT_DIR$/src/sample/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,8 +64,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="165" column="44" lean-forward="false" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
+            <state relative-caret-position="184">
+              <caret line="172" column="33" lean-forward="true" selection-start-line="172" selection-start-column="33" selection-end-line="172" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -191,6 +184,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -237,8 +232,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -708,7 +701,8 @@
       <workItem from="1523813372609" duration="1310000" />
       <workItem from="1523991395406" duration="4662000" />
       <workItem from="1524341172436" duration="5352000" />
-      <workItem from="1524349168669" duration="37000" />
+      <workItem from="1524349168669" duration="617000" />
+      <workItem from="1524749260033" duration="138000" />
     </task>
     <task id="LOCAL-00001" summary="Added the database class for the app.&#10;Now we can querry for information. &#10;Further improvement is required as for now just the connection is established, with querries to be integrated in the execution code required.">
       <created>1523996076853</created>
@@ -717,11 +711,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523996076853</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added database check for licence plate.">
+      <created>1524349259242</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1524349259242</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12754000" />
+    <option name="totallyTimeSpent" value="13472000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -771,7 +772,8 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Added the database class for the app.&#10;Now we can querry for information. &#10;Further improvement is required as for now just the connection is established, with querries to be integrated in the execution code required." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the database class for the app.&#10;Now we can querry for information. &#10;Further improvement is required as for now just the connection is established, with querries to be integrated in the execution code required." />
+    <MESSAGE value="Added database check for licence plate." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added database check for licence plate." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1041,8 +1043,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="165" column="44" lean-forward="false" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
+        <state relative-caret-position="184">
+          <caret line="172" column="33" lean-forward="true" selection-start-line="172" selection-start-column="33" selection-end-line="172" selection-end-column="33" />
           <folding />
         </state>
       </provider>
