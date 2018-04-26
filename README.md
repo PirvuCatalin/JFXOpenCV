@@ -1,5 +1,8 @@
 # JFXOpenCV
  
+#PusherApp :
+In order to use the PusherApp, you should run the build from the PusherApp class. It will send a notification to the token found in the code . If you want to test it and send a notification to your phone, build the sources found at the following repo https://www.github.com/PirvuCatalin/PushReceiverApp and install the APK on your phone. Read the console output, copy the token found there and paste it in the PusherApp class then run it.
+
 
 Before continuing to read this you should check the latest commit changes and the latest closed issue (regarding the scanner). In the Controller.class you will see more info like:
 
