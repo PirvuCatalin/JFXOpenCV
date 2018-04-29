@@ -11,12 +11,12 @@ public class SendMessage implements Runnable {
 
     public void run() {
         try {
-            Socket socket = new Socket("192.168.0.104", 1755);
+            Socket socket = new Socket("185.128.97.145", 1755);
             DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
             DOS.writeUTF(mMsg);
             socket.close();
         } catch (Exception e) {
-            System.out.println("didnt connect");
+            System.out.println("Couldn't connect:" + e);
         }
     }
 }

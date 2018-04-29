@@ -184,13 +184,14 @@ public class Controller
           ////////////////////////////////// This is what happens when a new car comes to the station
                                         //      finalLicensePlate is the card license plate
                                         System.out.println("\nThe final license plate:" + finalLicensePlate);
-                                        new Thread(new SendMessage("D"+finalLicensePlate)).start();
+                                        new Thread(new SendMessage("D" + finalLicensePlate)).start();
                                         //getmehere
 
 
                                     }
                                     else {
-                                        System.out.println("The scan failed to return a valid license plate.\nGoing back to the basic scanning.");
+                                        System.out.println("The scan failed to return a valid license plate.\n");
+                                        System.out.print("Going back to the basic scanning.");
                                         modifier = "motion";
                                     }
                                 }
@@ -219,6 +220,8 @@ public class Controller
                                         //
                                         System.out.println("THE CAR LEFT!");
                                         modifier = "motion";
+
+                                        new Thread(new SendMessage("L" + finalLicensePlate)).start();
                                     }
                                     i = 0;
                                     k = 0;
