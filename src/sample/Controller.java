@@ -11,7 +11,7 @@ import org.opencv.core.MatOfPoint;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
-import Utils.Utils;
+import Utils.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -184,8 +184,9 @@ public class Controller
           ////////////////////////////////// This is what happens when a new car comes to the station
                                         //      finalLicensePlate is the card license plate
                                         System.out.println("\nThe final license plate:" + finalLicensePlate);
-                                        // db.getAllEntries(finalLicensePlate);
-                                        /* The local database approach might be obsolete*/
+                                        new Thread(new SendMessage("D"+finalLicensePlate)).start();
+                                        //getmehere
+
 
                                     }
                                     else {

@@ -66,7 +66,4 @@ public class Main extends Application
 
     }
 
-    public static void getLicence(String licence) {
-
-    }
 }
