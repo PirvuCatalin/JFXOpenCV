@@ -33,6 +33,6 @@ https://medium.com/@aadimator/how-to-set-up-opencv-in-intellij-idea-6eb103c1d45c
 
 -------------------------------------------------------------------------------------------------------------------------------
 To test the current application, you will need the following 2 repositories as well:
--- The server required to relay the information: https://github.com/bogdanvaduva9/Server
--- The mobile application: https://github.com/bogdanvaduva9/android-app-for-fastpeco
--- To test it, you must first open the server, then install the mobile app, register an account with a valid licence plate number, and after that, you can use this application to scan a licence plate (the one you signed in with or another) and it will prompt you with a message about whether the licence plate exists or not
+# The server required to relay the information: https://github.com/bogdanvaduva9/Server
+# The mobile application: https://github.com/bogdanvaduva9/android-app-for-fastpeco
+# To test it, you must first open the server, then install the mobile app, register an account with a valid licence plate number, and after that, you can use this application to scan a licence plate (the one you signed in with or another) and it will prompt you with a message about whether the licence plate exists or not
